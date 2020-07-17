@@ -39,40 +39,54 @@ class LinkedList:
 
         return False
     
-    def remove_from_tail(self):
-        if self.head is None:
-            return None
-        if self.head.next_node is None:
-            self.head = None
-            self.tail = None
-        else:
-            currentNode = self.head
-            while currentNode.next_node.next_node is not None:
-                currentNode = currentNode.next_node
+    # def remove_from_tail(self):
+    #     if self.head is None:
+    #         return None
+    #     if self.head.next_node is None:
+    #         self.head = None
+    #         self.tail = None
+    #     else:
+    #         currentNode = self.head
+    #         while currentNode.next_node.next_node is not None:
+    #             currentNode = currentNode.next_node
 
-            new_tail_node = currentNode
-            tail_node = currentNode.next_node
-            new_tail_node.next_node = None
-            return tail_node.value
+    #         new_tail_node = currentNode
+    #         tail_node = currentNode.next_node
+    #         new_tail_node.next_node = None
+    #         return tail_node.value
+
     
-
     def reverse_list(self, node, prev):
-        if self.head is None:
-            return
+        # if self.head is None:
+        #     return
         
-        elif self.head.next_node is None:
+        # elif self.head.next_node is None:
+        #     return
+        # # base case - 2 elements
+        # elif self.head.next_node.next_node is None:
+        #     head_node = self.head
+        #     tail_node = self.head.next_node
+        #     self.head = tail_node
+        #     self.head.next_node = head_node
+        #     self.head.next_node.next_node = None
+        # else:
+        #     tail_value = self.remove_from_tail()
+        #     self.reverse_list(self.head, None)
+        #     self.add_to_head(tail_value)
+
+        if node is None:
             return
-        # base case - 2 elements
-        elif self.head.next_node.next_node is None:
-            head_node = self.head
-            tail_node = self.head.next_node
-            self.head = tail_node
-            self.head.next_node = head_node
-            self.head.next_node.next_node = None
+        elif node.next_node is None:
+            node.next_node = prev
         else:
-            tail_value = self.remove_from_tail()
-            self.reverse_list(self.head, None)
-            self.add_to_head(tail_value)
+            nextPrev = node
+            next = node.next_node
+            node.next_node = prev
+            prev = nextPrev
+            node = next
+            self.head = node
+            self.reverse_list(node, prev)
+    
         
         
 
