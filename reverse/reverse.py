@@ -24,6 +24,7 @@ class LinkedList:
 
         self.head = node
 
+
     def contains(self, value):
         if not self.head:
             return False
@@ -38,5 +39,43 @@ class LinkedList:
 
         return False
 
+    # def remove_from_tail(self):
+    #     if self.head is None:
+    #         return None
+    #     if self.head.next_node is None:
+    #         self.head = None
+    #         self.tail = None
+    #     else:
+    #         currentNode = self.head
+    #         while currentNode.next_node.next_node is not None:
+    #             currentNode = currentNode.next_node
+            
+    #         new_tail_node = currentNode
+    #         tail_node = currentNode.next_node
+    #         new_tail_node.next_node = None
+    #         return tail_node.value
+    
     def reverse_list(self, node, prev):
-        pass
+        if self.head is None:
+            return
+        
+        if self.head.next_node is None:
+            return
+        
+        currentNode = node
+        while currentNode is not None:
+            next = currentNode.next_node
+            currentNode.next_node = prev
+            prev = currentNode
+            currentNode = next
+        self.head = prev
+
+        
+        # if currentNode.value is node.value:
+        #     print('current node is the node value')
+        #     return
+        # else:
+        #     self.add_to_head(self.remove_from_tail())
+    
+
+
